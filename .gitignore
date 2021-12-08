@@ -39,6 +39,7 @@ npm-debug.log
 yarn-error.log
 testem.log
 /typings
+new_user_credentials.csv
 
 # System Files
 .DS_Store

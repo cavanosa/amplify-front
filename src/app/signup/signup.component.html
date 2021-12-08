@@ -1,4 +1,4 @@
-<div class="container d-flex justify-content-center mt-3">
+<div class="container d-flex justify-content-center mt-3" *ngIf="!verifying; else verifytemplate">
     <div class="card">
         <div class="card-header">
             <ul class="nav nav-tabs">
@@ -12,7 +12,7 @@
             </ul>
         </div>
         <div class="card-body">
-            <form #f="ngForm" novalidate>
+            <form #f="ngForm" novalidate (ngSubmit)="onRegister()">
                 <div class="form-group">
                     <label for="email">Email</label>
                     <input type="email" name="email" id="email" class="form-control" [(ngModel)]="email" required>
@@ -32,10 +32,34 @@
                         required>
                 </div>
                 <div class="form-group mt-2">
-                    <button class="btn btn-outline-success w-100" [disabled]="!f.valid">
+                    <button type="submit" class="btn btn-outline-success w-100" [disabled]="!f.valid">
                         <i class="fas fa-user-plus"></i> Crear Cuenta</button>
                 </div>
             </form>
         </div>
     </div>
 </div>
+
+<ng-template #verifytemplate>
+    <div class="container d-flex justify-content-center mt-3">
+        <div class="card">
+            <div class="card-header text-center">
+                Introducir Código
+            </div>
+            <div class="card-body">
+                <form #f="ngForm" novalidate (ngSubmit)="onVerify()">
+                    <div class="form-group">
+                        <label for="verifyCode">Código</label>
+                        <input type="text" name="verifyCode" id="verifyCode" class="form-control"
+                            [(ngModel)]="verifyCode" required>
+                    </div>
+
+                    <div class="form-group mt-2">
+                        <button class="btn btn-outline-success w-100" [disabled]="!f.valid">
+                            <i class="fas fa-user-check"></i> Verificar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</ng-template>

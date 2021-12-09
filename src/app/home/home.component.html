@@ -22,6 +22,10 @@
                 <td>{{attributes.nickname}}</td>
                 <td>{{attributes.email}}</td>
             </tr>
+            <tr *ngIf="message">
+                <td>Message</td>
+                <td colspan="2">{{message}}</td>
+            </tr>
         </tbody>
       </table>
 </div>

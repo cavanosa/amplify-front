@@ -3,7 +3,12 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  apirestURL: 'http://localhost:8080/',
+  ACCESS_TOKEN: 'accessToken',
+  CLIENT_ID: '48d1jcb8ssc6649it072cess3o',
+  AUTHORIZATION: 'Authorization',
+  BEARER: 'Bearer '
 };
 
 /*

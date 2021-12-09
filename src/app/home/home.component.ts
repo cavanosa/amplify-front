@@ -1,3 +1,4 @@
+import { ApiRestService } from './../services/api-rest.service';
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import Auth from '@aws-amplify/auth';
@@ -10,12 +11,15 @@ import Auth from '@aws-amplify/auth';
 export class HomeComponent implements OnInit {
 
   attributes: any;
+  message: any;
 
   constructor(
-    private router: Router
+    private router: Router,
+    private apiRestService: ApiRestService
   ) { }
 
   ngOnInit(): void {
+    this.getMessage();
   }
 
   onLogout(): void {
@@ -31,6 +35,15 @@ export class HomeComponent implements OnInit {
       this.attributes = user.attributes;
       // alert(JSON.stringify(this.attributes));
     }).catch( err => {
+      alert(err.message || JSON.stringify(err));
+    })
+  }
+
+  getMessage(): void {
+    this.apiRestService.getMessage().subscribe( data => {
+      this.message = data.message;
+    },
+    err => {
       alert(err.message || JSON.stringify(err));
     })
   }

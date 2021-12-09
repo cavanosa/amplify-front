@@ -1,3 +1,4 @@
+import { interceptorApiRestProvider } from './interceptors/api-rest.interceptor';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -25,7 +26,7 @@ import { HttpClientModule } from '@angular/common/http';
     HttpClientModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [ interceptorApiRestProvider ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

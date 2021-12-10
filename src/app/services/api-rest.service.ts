@@ -14,7 +14,11 @@ export class ApiRestService {
     private httpClient: HttpClient
   ) { }
 
-  public getMessage(): Observable<any> {
-    return this.httpClient.get<any>(this.apirestURL + 'hello');
+  public getMessageAdmin(): Observable<any> {
+    return this.httpClient.get<any>(this.apirestURL + 'hello-admin');
+  }
+
+  public getMessageUser(): Observable<any> {
+    return this.httpClient.get<any>(this.apirestURL + 'hello-user');
   }
 }

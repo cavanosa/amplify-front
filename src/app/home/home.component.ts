@@ -1,3 +1,4 @@
+import { AuthService } from './../services/auth.service';
 import { ApiRestService } from './../services/api-rest.service';
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
@@ -15,11 +16,16 @@ export class HomeComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private apiRestService: ApiRestService
+    private apiRestService: ApiRestService,
+    private authService: AuthService
   ) { }
 
   ngOnInit(): void {
-    this.getMessage();
+    if (this.authService.isAdmin()) {
+      this.getMessageAdmin();
+    } else {
+      this.getMessageUser();
+    }
   }
 
   onLogout(): void {
@@ -39,8 +45,17 @@ export class HomeComponent implements OnInit {
     })
   }
 
-  getMessage(): void {
-    this.apiRestService.getMessage().subscribe( data => {
+  getMessageAdmin(): void {
+    this.apiRestService.getMessageAdmin().subscribe( data => {
+      this.message = data.message;
+    },
+    err => {
+      alert(err.message || JSON.stringify(err));
+    })
+  }
+
+  getMessageUser(): void {
+    this.apiRestService.getMessageUser().subscribe( data => {
       this.message = data.message;
     },
     err => {
